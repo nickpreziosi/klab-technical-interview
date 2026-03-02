@@ -220,6 +220,7 @@ export function InvoicesView() {
   const [invoices, setInvoices] = React.useState<Invoice[]>([])
   const [isLoading, setIsLoading] = React.useState(true)
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([])
+  const [columnVisibility, setColumnVisibility] = React.useState<Record<string, boolean>>({})
   const [pagination, setPagination] = React.useState<PaginationState>({
     pageIndex: 0,
     pageSize: 10,
@@ -481,6 +482,8 @@ export function InvoicesView() {
         onPaginationChange={setPagination}
         columnFilters={columnFilters}
         onColumnFiltersChange={setColumnFilters}
+        columnVisibility={columnVisibility}
+        onColumnVisibilityChange={setColumnVisibility}
         className="space-y-8"
       >
         <InvoiceStatsWithTable />

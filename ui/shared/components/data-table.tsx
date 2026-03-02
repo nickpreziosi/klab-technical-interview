@@ -96,6 +96,10 @@ interface DataTableContainerProps<TData, TValue> {
   columnFilters?: ColumnFiltersState
   /** Callback when column filters change */
   onColumnFiltersChange?: OnChangeFn<ColumnFiltersState>
+  /** Controlled column visibility (Record<columnId, boolean>) */
+  columnVisibility?: Record<string, boolean>
+  /** Callback when column visibility changes */
+  onColumnVisibilityChange?: OnChangeFn<Record<string, boolean>>
   /** Columns to search when using global filter (defaults to all columns) */
   globalFilterColumns?: string[]
   /** Loading UI: "skeleton" or "spinner" (default). Spinner works better when no data may load. */
@@ -119,6 +123,8 @@ export function DataTableContainer<TData, TValue>({
   enableThreeStateSort = true,
   columnFilters: controlledColumnFilters,
   onColumnFiltersChange,
+  columnVisibility: controlledColumnVisibility,
+  onColumnVisibilityChange,
   globalFilterColumns,
   loaderVariant = "spinner",
   children,
@@ -126,7 +132,22 @@ export function DataTableContainer<TData, TValue>({
 }: DataTableContainerProps<TData, TValue>) {
   const [sorting, setSorting] = React.useState<SortingState>([])
   const [internalColumnFilters, setInternalColumnFilters] = React.useState<ColumnFiltersState>([])
-  const [columnVisibility, setColumnVisibility] = React.useState({})
+  const [internalColumnVisibility, setInternalColumnVisibility] = React.useState<
+    Record<string, boolean>
+  >({})
+  const columnVisibility = controlledColumnVisibility ?? internalColumnVisibility
+  const handleColumnVisibilityChange: OnChangeFn<Record<string, boolean>> = React.useCallback(
+    (updaterOrValue) => {
+      if (onColumnVisibilityChange) {
+        onColumnVisibilityChange(updaterOrValue)
+      } else {
+        setInternalColumnVisibility((prev) =>
+          typeof updaterOrValue === "function" ? updaterOrValue(prev) : updaterOrValue
+        )
+      }
+    },
+    [onColumnVisibilityChange]
+  )
   const [globalFilter, setGlobalFilter] = React.useState("")
   const [internalPagination, setInternalPagination] = React.useState<PaginationState>({
     pageIndex: 0,
@@ -314,7 +335,7 @@ export function DataTableContainer<TData, TValue>({
           globalFilterFn,
         }),
     onGlobalFilterChange: setGlobalFilter,
-    onColumnVisibilityChange: setColumnVisibility,
+    onColumnVisibilityChange: handleColumnVisibilityChange,
     onPaginationChange: setPagination,
     state: {
       sorting,
