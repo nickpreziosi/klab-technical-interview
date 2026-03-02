@@ -150,11 +150,13 @@ const ACCORDION_STORAGE_KEY = "invoices-filters-accordion"
 
 /** Self-contained accordion - manages its own state so it never re-renders on theme change */
 const FiltersAccordion = React.memo(function FiltersAccordion() {
-  const [value, setValue] = React.useState<string | undefined>(() => {
-    if (typeof window === "undefined") return "filters"
+  // Use consistent initial value to avoid hydration mismatch (server has no localStorage)
+  const [value, setValue] = React.useState<string | undefined>("filters")
+
+  React.useEffect(() => {
     const stored = localStorage.getItem(ACCORDION_STORAGE_KEY)
-    return stored === "closed" ? undefined : stored ?? "filters"
-  })
+    setValue(stored === "closed" ? undefined : stored ?? "filters")
+  }, [])
 
   const handleChange = React.useCallback((v: string | undefined) => {
     setValue(v)
