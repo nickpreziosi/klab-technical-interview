@@ -1,6 +1,6 @@
-# K Lab Technical Interview — Dashboard UI Enhancement
+# KLab Technical Interview — Dashboard UI Enhancement
 
-This is a [Next.js](https://nextjs.org) project used for the K Lab technical interview. You will receive a link to the GitHub repository to clone and work on locally while sharing your screen. If you don't have GitHub access, a zip file can be provided instead.
+This is a [Next.js](https://nextjs.org) project used for the KLab technical interview. You will receive a link to the GitHub repository to clone and work on locally while sharing your screen. If you don't have GitHub access, a zip file can be provided instead.
 
 ---
 
@@ -23,20 +23,14 @@ This project is an **Invoice Dashboard** — an application that displays and ma
 | Framework | Next.js 16 (App Router), React 19 |
 | UI | Tailwind CSS, shadcn/ui, Radix UI primitives |
 | Data table | TanStack Table (React Table v8) |
-| Components | K Lab components library (`@k-lab/components`) |
+| Components | KLab components (in `ui/shared/components/`) |
 | Icons | Lucide React |
 
-### K Lab Component Library
+### KLab Component Library
 
-This project uses the **K Lab Component Library** (`@k-lab/components`). Components were installed via the CLI, which copies component source files into this repo (e.g. `ui/shared/components/`). You can modify the source code as needed — the components are yours to edit.
+This project includes KLab UI components in `ui/shared/components/`. You can modify the source code as needed to complete the interview task — the components are yours to edit during the session.
 
-To add more components (if needed):
-
-```bash
-npx k-lab-components add <component-name>
-# e.g. npx k-lab-components add button
-# Or add all: npx k-lab-components add --all
-```
+**Important:** The KLab components are proprietary. They are provided for interview use only. Do not copy, reuse, or incorporate them into projects outside of this interview. See [NOTICE](NOTICE) for details.
 
 ### Data model
 
@@ -140,7 +134,7 @@ From the project root, run:
 npm install
 ```
 
-This installs all required packages (Next.js, React, Tailwind CSS, Radix UI, the K Lab components library, etc.). If you see any errors, share them with the interviewer.
+This installs all required packages (Next.js, React, Tailwind CSS, Radix UI, the KLab components library, etc.). If you see any errors, share them with the interviewer.
 
 ### 3. Start the development server
 

@@ -1,7 +1,5 @@
 import type { NextConfig } from "next";
 
-const nextConfig: NextConfig = {
-    transpilePackages: ["@k-lab/components"],
-};
+const nextConfig: NextConfig = {};
 
 export default nextConfig;

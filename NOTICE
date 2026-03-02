@@ -1,0 +1,15 @@
+NOTICE — Intellectual Property and Use Restrictions
+
+This repository is provided by KLab Inc. for technical interview purposes only.
+
+PROPRIETARY COMPONENTS
+The KLab UI components located in ui/shared/components/ (including but not limited to
+FloatingLabelInput, DataCard, DataTable, and related components) are proprietary to KLab.
+These components include custom styling, branding, and functionality extensions.
+
+INTERVIEW USE ONLY
+This project is provided solely for use during the KLab technical interview. You may
+modify the components as needed to complete the interview task. You may not copy, reuse,
+redistribute, or incorporate these components into any project outside of this interview.
+
+All rights reserved. © KLab Inc.
